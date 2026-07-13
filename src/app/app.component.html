@@ -1,0 +1,86 @@
+<h1 class="heading">welcome to the Employee App</h1>
+<div  class="heading1">
+
+
+
+<div class="container">
+
+  <h2>📝 Angular Signals Todo App</h2>
+
+  <div class="input-group">
+    <input
+      type="text"
+      [ngModel]="newTodo()"
+      (ngModelChange)="newTodo.set($event)"
+      placeholder="Enter a new todo..." />
+
+    <button class="add-btn" (click)="addTodo()">
+      Add Todo
+    </button>
+  </div>
+
+  <div class="stats">
+    <span>📋 Total: {{ totalTodos() }}</span>
+    <span>✅ Completed: {{ completedTodos() }}</span>
+    <span>⏳ Pending: {{ pendingTodos() }}</span>
+  </div>
+
+  @if (todos().length > 0) {
+
+    <ul>
+
+      @for (todo of todos(); track todo.id) {
+
+        <li>
+
+          <div class="todo-left">
+
+            <input
+              type="checkbox"
+              [checked]="todo.completed"
+              (change)="toggleTodo(todo.id)" />
+
+            <span
+              class="todo-title"
+              [class.completed]="todo.completed">
+
+              {{ todo.title }}
+
+            </span>
+
+          </div>
+
+          <button
+            class="delete-btn"
+            (click)="deleteTodo(todo.id)">
+
+            Delete
+
+          </button>
+
+        </li>
+
+      }
+
+    </ul>
+
+  } @else {
+
+    <p class="empty">
+      🎉 No Todos Found. Add your first task!
+    </p>
+
+  }
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+        <router-outlet></router-outlet>
+ 
